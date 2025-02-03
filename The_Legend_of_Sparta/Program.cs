@@ -47,10 +47,12 @@ namespace The_Legend_of_Sparta
                     Console.Clear();
                     continue;
                 }
-                else if (confirmInput == "3")
+                else if (confirmInput == "3" || confirmInput == "")
                 {
                     playerName = "GigaChad";
                     player = new Character(playerName);
+                    Inventory = new Inventory(player);
+                    player.SetInventory(Inventory);
                     isNameConfirmed = true;
                 }
                 else
@@ -79,16 +81,15 @@ namespace The_Legend_of_Sparta
             if (player.Name == "GigaChad")
             {
                 Console.Clear();
-                Console.WriteLine("오, 스삣삐");
+                Console.WriteLine("오, 스삣삐. 넌 튜토리얼 필요없지?");
                 Console.WriteLine("내가 너를 위해 새로운 선택창을 추가했어");
-                Console.WriteLine("당장 선택해! 스삣삐");
             }
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
             if (player.Name == "GigaChad")
             {
-                Console.WriteLine("\n7. Chill guy");
+                Console.WriteLine("\n7. Chill guy  <= 당장 이걸 선택해! 스삣삐");
             }
 
             Console.WriteLine("0. 나가기");

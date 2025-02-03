@@ -49,8 +49,8 @@ namespace The_Legend_of_Sparta
                 Console.WriteLine("캐릭터의 정보가 표시됩니다.");
                 Console.WriteLine($"Lv. {Level:D2}");
                 Console.WriteLine($"{Name} ( {Job} )");
-                Console.WriteLine($"공격력 : {Attack+PlusAttack} ({(PlusAttack >= 0 ? "+" : "")}{PlusAttack})");
-                Console.WriteLine($"방어력 : {Defense+PlusDefense} ({(PlusDefense>= 0 ? "+" : "")}{PlusDefense})");
+                Console.WriteLine($"공격력 : {Attack+PlusAttack} {(PlusAttack > 0 ? $" (+{PlusAttack})" : "")}");
+                Console.WriteLine($"방어력 : {Defense+PlusDefense} {(PlusDefense > 0 ? $" (+{PlusDefense})" : "")}");
                 Console.WriteLine($"체 력 : {Health}");
                 Console.WriteLine($"Gold : {Gold} G");
                 Console.WriteLine("");
