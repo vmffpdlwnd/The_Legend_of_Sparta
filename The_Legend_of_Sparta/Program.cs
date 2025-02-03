@@ -89,6 +89,7 @@ namespace The_Legend_of_Sparta
                 Console.WriteLine("7. Chill guy");
             }
 
+            Console.WriteLine("0. 나가기");
             Console.Write("원하시는 행동을 입력해주세요.\n>>");
             string input = Console.ReadLine();
 
@@ -102,7 +103,7 @@ namespace The_Legend_of_Sparta
                     // 인벤토리 
                     Console.Clear();
                     Console.WriteLine("인벤토리는 준비중 입니다.");
-                    Console.WriteLine("\n0. 나가기");
+                    Console.WriteLine("0. 나가기");
                     Console.Write("원하시는 행동을 입력해주세요.\n>>");
                     Console.ReadLine(); // 사용자 입력 대기
                     break;
@@ -116,6 +117,26 @@ namespace The_Legend_of_Sparta
                     break;
                 case "7" when player.Name == "GigaChad":
                     Chill_guy.DisplayChillguy();
+                    break;
+                case "0":
+                    Console.Clear();
+                    Console.WriteLine("정말로 종료하시겠습니까?");
+                    Console.WriteLine("1. 예");
+                    Console.WriteLine("2. 아니오");
+                    Console.Write(">>");
+                    string exitChoice = Console.ReadLine();
+
+                    if (exitChoice == "1")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("게임을 종료합니다.");
+                        Thread.Sleep(1000);
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        Console.Clear();  // 메인 메뉴로 돌아가기
+                    }
                     break;
                 default:
                     Console.WriteLine("잘못된 입력입니다.");
