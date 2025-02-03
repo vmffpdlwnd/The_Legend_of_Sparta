@@ -64,6 +64,7 @@ namespace The_Legend_of_Sparta
                 }
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("잘못된 입력입니다.");
                     Thread.Sleep(1000);
                     Console.Clear();

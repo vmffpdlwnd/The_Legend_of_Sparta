@@ -25,16 +25,22 @@ namespace The_Legend_of_Sparta
                 Console.Write(">>");
                 string playerName = Console.ReadLine();
 
+                if (string.IsNullOrWhiteSpace(playerName))  // "", " ", "   " 등 모든 공백 케이스 처리
+                {
+                    Console.Clear();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    continue;
+                }
+
                 Console.WriteLine($"당신의 이름은 {playerName} 입니까?");
                 Console.WriteLine("1. 저장");
                 Console.WriteLine("2. 취소");
                 Console.Write(">>");
                 string confirmInput = Console.ReadLine();
 
-                if (playerName == "")
-                {
-                    playerName = "GigaChad";
-                }
+                
                 if (confirmInput == "1")
                 {
                     player = new Character(playerName);
@@ -59,6 +65,8 @@ namespace The_Legend_of_Sparta
                 {
                     Console.Clear();
                     Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
                     continue;
                 }
 
@@ -140,8 +148,10 @@ namespace The_Legend_of_Sparta
                     }
                     break;
                 default:
+                    Console.Clear();
                     Console.WriteLine("잘못된 입력입니다.");
                     Thread.Sleep(1000);
+                    Console.Clear();
                     break;
             }
         }
