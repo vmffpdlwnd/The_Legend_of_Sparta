@@ -12,6 +12,7 @@ namespace The_Legend_of_Sparta
         static Character player;
         static Chill_guy Chill_guy;
         static Inventory Inventory;
+        static Shop Shop;
 
         static void Main(string[] args)
         {
@@ -46,6 +47,7 @@ namespace The_Legend_of_Sparta
                     player = new Character(playerName);
                     Inventory = new Inventory(player);
                     player.SetInventory(Inventory);
+                    Shop = new Shop(player, Inventory);
                     isNameConfirmed = true;
                 }
                 else if (confirmInput == "2")
@@ -59,6 +61,7 @@ namespace The_Legend_of_Sparta
                     player = new Character(playerName);
                     Inventory = new Inventory(player);
                     player.SetInventory(Inventory);
+                    Shop = new Shop(player, Inventory);
                     isNameConfirmed = true;
                 }
                 else
@@ -119,10 +122,7 @@ namespace The_Legend_of_Sparta
                 case "3":
                     //상점
                     Console.Clear();
-                    Console.WriteLine("상점은 준비중 입니다.");
-                    Console.WriteLine("\n0. 나가기");
-                    Console.Write("원하시는 행동을 입력해주세요.\n>>");
-                    Console.ReadLine(); // 사용자 입력 대기
+                    Shop.DisplayShop();
                     break;
                 case "7" when player.Name == "GigaChad":
                     Chill_guy.DisplayChillguy();

@@ -14,11 +14,14 @@ namespace The_Legend_of_Sparta
         public string Description { get; set; }
         public bool IsEquipped { get; set; }
         public ItemType Type { get; set; }
+        public int Price { get; set; }  
+        public bool IsPurchased { get; set; }
     }
     public enum ItemType
     {
         Spear, // 창
         Sword, // 검
-        Armor // 방어구
+        Axe,   // 도끼
+        Armor  // 방어구
     }
 }

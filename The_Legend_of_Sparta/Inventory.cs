@@ -20,25 +20,15 @@ namespace The_Legend_of_Sparta
 
             items.Add(new Item
             {
-                Name = "무쇠갑옷",
-                Power = 5,
-                Description = "무쇠로 만들어져 튼튼한 갑옷입니다.",
-                Type = ItemType.Armor
-            });
-            items.Add(new Item
-            {
-                Name = "스파르타의 창",
-                Power = 7,
-                Description = "스파르타의 전사들이 사용했다는 전설의 창입니다.",
-                Type = ItemType.Spear
-            });
-            items.Add(new Item
-            {
-                Name = "낡은 검 ",
-                Power = 2,
-                Description = "쉽게 볼 수 있는 낡은 검 입니다.",
+                Name = "나무 막대기",
+                Power = 1,
+                Description = "나무가지로 만들어진 막대기 입니다.",
                 Type = ItemType.Sword
             });
+        }
+        public void AddItem(Item item)
+        {
+            items.Add(item);  // 이제 내부에서 items 리스트에 접근 가능
         }
         public List<Item> GetEquippedItems()
         {
@@ -51,6 +41,12 @@ namespace The_Legend_of_Sparta
             Console.WriteLine("보유 중인 아이템을 관리할 수 있습니다.\n");
 
             Console.WriteLine("[아이템 목록]");
+            for (int i = 0; i < items.Count; i++)
+            {
+                string equipped = items[i].IsEquipped ? "[E]" : "";
+                string powerText = items[i].Type == ItemType.Armor ? "방어력" : "공격력";
+                Console.WriteLine($"- {i + 1} {equipped}{items[i].Name} | {GetStatText(items[i])} | {items[i].Description}");
+            }
             Console.WriteLine("1. 장착 관리");
             Console.WriteLine("0. 나가기\n");
 
