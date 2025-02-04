@@ -100,7 +100,7 @@ namespace The_Legend_of_Sparta
             Console.WriteLine("3. 상점");
             if (player.Name == "GigaChad")
             {
-                Console.WriteLine("\n7. Chill guy  <= 당장 이걸 선택해! 스삣삐");
+                Console.WriteLine("7. Chill guy  <= 당장 이걸 선택해! 스삣삐");
             }
 
             Console.WriteLine("0. 나가기");
@@ -124,7 +124,29 @@ namespace The_Legend_of_Sparta
                     Console.Clear();
                     Shop.DisplayShop();
                     break;
+                case "4":
+                    //던전입장
+                    Console.Clear();
+                    Console.WriteLine("던전입장은 준비중 입니다.");
+                    Console.Write("아무 버튼을 눌러주세요.\n>>");
+                    Console.ReadLine(); // 사용자 입력 대기
+                    break;
+                case "5":
+                    //휴식하기
+                    Console.Clear();
+                    Console.WriteLine("휴식하기는 준비중 입니다.");
+                    Console.Write("아무 버튼을 눌러주세요.\n>>");
+                    Console.ReadLine(); // 사용자 입력 대기
+                    break;
+                case "6" when player.Name == "GigaChad":
+                    //???
+                    Console.Clear();
+                    Console.WriteLine("???는 준비중 입니다.");
+                    Console.Write("아무 버튼을 눌러주세요.\n>>");
+                    Console.ReadLine(); // 사용자 입력 대기
+                    break;
                 case "7" when player.Name == "GigaChad":
+                    //Chill guy
                     Chill_guy.DisplayChillguy();
                     break;
                 case "0":

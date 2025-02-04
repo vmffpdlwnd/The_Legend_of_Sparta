@@ -123,8 +123,7 @@ namespace The_Legend_of_Sparta
                         PurchaseItem();
                         break;
                     case "2":
-                        Console.WriteLine("준비중 입니다.");
-                        Thread.Sleep(1000);
+                        SellItem();
                         break;
                     case "0":
                         isShopOpen = false;
@@ -251,5 +250,110 @@ namespace The_Legend_of_Sparta
                 }
             }
         }
+        private void SellItem()
+        {
+            Console.Clear();
+            Console.WriteLine("상점 - 아이템 판매");
+            if (player.Name == "GigaChad")
+            {
+                Console.Clear();
+                Console.WriteLine("현명한 선택이야 스삣삐");
+                Console.WriteLine("나약한 장비는 과감하게 버려야 스파르타지/n");
+            }
+            Console.WriteLine($"\n[보유 골드]\n{player.Gold} G\n");
+
+            var inventoryItems = inventory.GetItems();
+
+            if (inventoryItems.Count <= 1)
+            {
+                Console.WriteLine("판매할 아이템이 없습니다.");
+                if (player.Name == "GigaChad")
+                {
+                    Console.Clear();
+                    Console.WriteLine("스삣삐... 스파르타는 아이템 따윈 팔지 않지");
+                    Console.WriteLine("더 강해진 후 돌아오길 기대하지.");
+                }
+                
+                Thread.Sleep(1000);
+                return;
+            }
+
+            Console.WriteLine("[아이템 목록]");
+            for (int i = 0; i < inventoryItems.Count; i++)
+            {
+                var item = inventoryItems[i];
+
+                int sellPrice = (int)(item.Price * 0.85);
+
+                string stat = item.Type == ItemType.Armor ? $"방어력 + {item.Power}" : $"공격력 + {item.Power}";
+
+                string equippedMark = item.IsEquipped ? "[E] " : "";
+                if (item.IsBasicItem)
+                {
+                    Console.WriteLine($"- {i + 1} {equippedMark}{item.Name,-8} | {stat,-6} | {item.Description,-30} | 판매 불가");
+                }
+                else
+                {
+                    Console.WriteLine($"- {i + 1} {equippedMark}{item.Name,-8} | {stat,-6} | {item.Description,-30} | {sellPrice} G");
+                }
+                
+            }
+
+            Console.WriteLine("\n0. 나가기");
+            Console.Write("판매할 아이템 번호를 입력해 주세요.\n>>");
+
+            string input = Console.ReadLine();
+            if (input == "0") return;
+
+            if( int.TryParse(input, out int index) && index > 0 && index <= inventoryItems.Count )
+            {
+                var item = inventoryItems[index - 1];
+
+                if (item.IsBasicItem)
+                {
+                    Console.WriteLine("해당 아이템은 판매할 수 없습니다.");
+                    Thread.Sleep(1000);
+                    return;
+                }
+
+                if (item.IsEquipped)
+                {
+                    item.IsEquipped = false;
+                    player.UpdateStats();
+                }
+
+                int sellPrice = (int)(item.Price * 0.85);
+
+                player.Gold += sellPrice;
+                inventory.RemoveItem(index - 1);
+
+                if(player.Name == "GigaChad")
+                {
+                    Console.WriteLine("완벽해, 스삣삐. 약한 장비는 과감히 놓아주는 것.");
+                    Console.WriteLine("이제 더 강한 장비를 향해 나아가자고.");
+                }
+                else
+                {
+                    Console.WriteLine("판매가 완료했습니다.");
+                }
+                Thread.Sleep(1000);
+            }
+            else
+            {
+                Console.Clear();
+                if (player.Name == "GigaChad")
+                {
+                    
+                    Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                }
+                else
+                {
+                    Console.WriteLine("잘못된 입력입니다.");
+                }
+                Thread.Sleep(1000);
+                Console.Clear();
+            }
+        }
     }
+
 }

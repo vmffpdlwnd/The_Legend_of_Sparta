@@ -16,6 +16,7 @@ namespace The_Legend_of_Sparta
         public ItemType Type { get; set; }
         public int Price { get; set; }  
         public bool IsPurchased { get; set; }
+        public bool IsBasicItem { get; set; }
     }
     public enum ItemType
     {

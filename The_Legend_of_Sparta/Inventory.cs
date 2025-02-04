@@ -23,7 +23,10 @@ namespace The_Legend_of_Sparta
                 Name = "나무 막대기",
                 Power = 1,
                 Description = "나무가지로 만들어진 막대기 입니다.",
-                Type = ItemType.Sword
+                Type = ItemType.Sword,
+                Price = 0,
+                IsEquipped = false,
+                IsBasicItem = true
             });
         }
         public void AddItem(Item item)
@@ -164,6 +167,17 @@ namespace The_Legend_of_Sparta
                     }
                     selectedItem.IsEquipped = !selectedItem.IsEquipped;
                 }
+            }
+        }
+        public List<Item> GetItems()
+        {
+            return items;
+        }
+        public void RemoveItem(int index)
+        {
+            if(index >= 0 && index < items.Count)
+            {
+                var item = items[index];
             }
         }
         }
