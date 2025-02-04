@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,11 +14,13 @@ namespace The_Legend_of_Sparta
         static Chill_guy Chill_guy;
         static Inventory Inventory;
         static Shop Shop;
+        static Rest Rest;
 
         static void Main(string[] args)
         {
             bool isNameConfirmed = false;
             Chill_guy = new Chill_guy();
+            Rest = new Rest();
 
             while (!isNameConfirmed)
             {
@@ -98,6 +101,7 @@ namespace The_Legend_of_Sparta
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
+            Console.WriteLine("5. 휴식하기");
             if (player.Name == "GigaChad")
             {
                 Console.WriteLine("6. ???");
@@ -135,13 +139,11 @@ namespace The_Legend_of_Sparta
                 case "5":
                     //휴식하기
                     Console.Clear();
-                    Console.WriteLine("휴식하기는 준비중 입니다.");
-                    Console.Write("아무 버튼을 눌러주세요.\n>>");
-                    Console.ReadLine(); // 사용자 입력 대기
+                    Rest.DisplayRest(player);
                     break;
                 case "6" when player.Name == "GigaChad":
                     //???
-                    Chill_guy.Show_me_the_money();
+                    Chill_guy.Show_me_the_money(player);
                     break;
                 case "7" when player.Name == "GigaChad":
                     //Chill guy

@@ -12,7 +12,6 @@ namespace The_Legend_of_Sparta
 {
     public class Chill_guy
     {
-        static Character player;
         public void DisplayChillguy()
         {
             bool isChillguy = true;
@@ -55,7 +54,7 @@ namespace The_Legend_of_Sparta
                 }
             }
         }
-        public void Show_me_the_money()
+        public void Show_me_the_money(Character player)
         {
             Console.Clear();
             Thread.Sleep(500);
@@ -101,13 +100,16 @@ namespace The_Legend_of_Sparta
             bool isMoney = true;
             while (isMoney)
             {
+                Console.Clear();
+                Console.WriteLine("SHOW ME THE MONEY");
+
                 Console.WriteLine("\n스삣삐, 넌 특별해. 내 진정한 동료가 될 자격이 있어.");
                 Console.WriteLine("챔피언의 특권을 나누어주지. 500골드를 받아가도록 해.");
                 Console.WriteLine("이건 우리들만의 비밀이야, 스삣삐.");
                 Console.WriteLine("더 강해져서 돌아오도록. *묵직하게 끄덕임*\n");
 
                 Console.WriteLine("1. 보상을 받는다 ");
-                Console.WriteLine("0. 거절한다.");
+                Console.WriteLine("0. 거절한다.\n>>");
                 string input = Console.ReadLine();
 
                 if (input == "1")
@@ -117,7 +119,7 @@ namespace The_Legend_of_Sparta
                     Console.WriteLine("이제 진정한 챔피언의 길을 걷게 될 거야.");
 
                     Console.Write("아무 버튼이나 눌러라 스삣삐.\n>>");
-                    //player.Gold += 500;
+                    player.Gold += 500;
                     Console.ReadLine(); // 사용자 입력 대기
                     isMoney = false;
                 }
