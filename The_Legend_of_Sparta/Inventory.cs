@@ -47,7 +47,7 @@ namespace The_Legend_of_Sparta
                 string powerText = items[i].Type == ItemType.Armor ? "방어력" : "공격력";
                 Console.WriteLine($"- {i + 1} {equipped}{items[i].Name} | {GetStatText(items[i])} | {items[i].Description}");
             }
-            Console.WriteLine("1. 장착 관리");
+            Console.WriteLine("\n1. 장착 관리");
             Console.WriteLine("0. 나가기\n");
 
             Console.Write("원하시는 행동을 입력해주세요.\n>>");
@@ -61,8 +61,20 @@ namespace The_Legend_of_Sparta
                 case "0":
                     return;
                 default:
-                    Console.WriteLine("잘못된 입력입니다.");
-                    Thread.Sleep(1000);
+                    if (Char.Name == "GigaChad")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("잘못된 입력입니다.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                    }
                     break;
             }
         }
@@ -98,7 +110,14 @@ namespace The_Legend_of_Sparta
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("잘못된 입력입니다.");
+                    if (Char.Name == "GigaChad")
+                    {
+                        Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                    }
+                    else
+                    {
+                        Console.WriteLine("잘못된 입력입니다.");
+                    }
                     Thread.Sleep(1000);
                     Console.Clear();
                 }

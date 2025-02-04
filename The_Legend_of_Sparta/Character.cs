@@ -54,7 +54,7 @@ namespace The_Legend_of_Sparta
                 Console.WriteLine($"체 력 : {Health}");
                 Console.WriteLine($"Gold : {Gold} G");
                 Console.WriteLine("");
-                Console.WriteLine("0. 나가기");
+                Console.WriteLine("0. 나가기\n");
                 Console.Write("원하시는 행동을 입력해주세요.\n>>");
 
                 string input = Console.ReadLine();
@@ -64,10 +64,20 @@ namespace The_Legend_of_Sparta
                 }
                 else
                 {
-                    Console.Clear();
-                    Console.WriteLine("잘못된 입력입니다.");
-                    Thread.Sleep(1000);
-                    Console.Clear();
+                    if (Name == "GigaChad")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("잘못된 입력입니다.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                    }
                 }
             }
         }

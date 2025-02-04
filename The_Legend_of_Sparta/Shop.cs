@@ -81,27 +81,38 @@ namespace The_Legend_of_Sparta
             while (isShopOpen)
             {
                 Console.Clear();
-                if (player.Name == "GigaChad")
-                {
-                    Console.WriteLine("어서오세요, 전설의 용사님!");
-                    Console.WriteLine("오늘도 최고의 물건들을 준비해놨습니다!");
-                }
-
                 Console.WriteLine("상점");
                 Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
+                if (player.Name == "GigaChad")
+                {
+                    Console.Clear();
+                    Console.WriteLine("스삣삐 상점에 찾아왔구나");
+                    Console.WriteLine("넌 어떤 물건이든 싸게 살수있어! 유 캔 두 잇");
+                }
                 Console.WriteLine("\n[보유 골드]");
                 Console.WriteLine($"{player.Gold} G");
                 Console.WriteLine("\n[아이템 목록]");
 
                 for (int i = 0; i < shopItems.Count; i++)
                 {
-                    string price = shopItems[i].IsPurchased ? "구매완료" : $"{shopItems[i].Price} G";
+                    string price;
+                    if (shopItems[i].IsPurchased)
+                    {
+                        price = "구매완료";
+                    }
+                    else
+                    {
+                        int actualPrice = player.Name == "GigaChad" ? (int)(shopItems[i].Price * 0.85) : shopItems[i].Price;
+                        price = $"{actualPrice} G";
+                    }
+
                     string stat = shopItems[i].Type == ItemType.Armor ? $"방어력 +{shopItems[i].Power}" : $"공격력 +{shopItems[i].Power}";
+
                     Console.WriteLine($"- {i + 1} {shopItems[i].Name,-8} | {stat,-6} | {shopItems[i].Description,-30} | {price}");
                 }
 
                 Console.WriteLine("\n1. 아이템 구매");
-                Console.WriteLine("\n2. 아이템 판매");
+                Console.WriteLine("2. 아이템 판매");
                 Console.WriteLine("0. 나가기");
                 Console.Write("\n원하시는 행동을 입력해주세요.\n>>");
 
@@ -119,8 +130,20 @@ namespace The_Legend_of_Sparta
                         isShopOpen = false;
                         break;
                     default:
-                        Console.WriteLine("잘못된 입력입니다.");
-                        Thread.Sleep(1000);
+                        if (player.Name == "GigaChad")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.Clear();
+                            Console.WriteLine("잘못된 입력입니다.");
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                        }
                         break;
                 }
             }
@@ -131,17 +154,35 @@ namespace The_Legend_of_Sparta
             Console.WriteLine("상점 - 아이템 구매");
             Console.WriteLine("\n[보유 골드]");
             Console.WriteLine($"{player.Gold} G");
+            if (player.Name == "GigaChad")
+            {
+                Console.Clear();
+                Console.WriteLine("상점 - 아이템 구매");
+                Console.WriteLine($"\n{player.Gold} G? 마음껏 골라봐!");
+            }
             Console.WriteLine("\n[아이템 목록]");
 
             for (int i = 0; i < shopItems.Count; i++)
             {
-                string price = shopItems[i].IsPurchased ? "구매완료" : $"{shopItems[i].Price} G";
+                string price;
+                if (shopItems[i].IsPurchased)
+                {
+                    price = "구매완료";
+                }
+                else
+                {
+                    // GigaChad일 경우 85% 가격 적용
+                    int actualPrice = player.Name == "GigaChad" ? (int)(shopItems[i].Price * 0.85) : shopItems[i].Price;
+                    price = $"{actualPrice} G";
+                }
+
                 string stat = shopItems[i].Type == ItemType.Armor ? $"방어력 +{shopItems[i].Power}" : $"공격력 +{shopItems[i].Power}";
+
                 Console.WriteLine($"- {i + 1} {shopItems[i].Name,-8} | {stat,-6} | {shopItems[i].Description,-30} | {price}");
             }
 
             Console.WriteLine("\n0. 나가기");
-            Console.Write("구매할 아이템 번호를 입력해주세요.\n>>");
+            Console.Write("\n구매할 아이템 번호를 입력해주세요.\n>>");
 
             string input = Console.ReadLine();
             if (input == "0") return;
@@ -149,14 +190,16 @@ namespace The_Legend_of_Sparta
             if (int.TryParse(input, out int index) && index > 0 && index <= shopItems.Count)
             {
                 var item = shopItems[index - 1];
+                int actualPrice = player.Name == "GigaChad" ? (int)(item.Price * 0.85) : item.Price;
+
                 if (item.IsPurchased)
                 {
                     Console.WriteLine("이미 구매한 아이템입니다.");
                     Thread.Sleep(1000);
                 }
-                else if (player.Gold >= item.Price)
+                else if (player.Gold >= actualPrice)
                 {
-                    player.Gold -= item.Price;
+                    player.Gold -= actualPrice;
                     item.IsPurchased = true;
 
                     var newItem = new Item  // 새 아이템 객체 생성
@@ -170,7 +213,18 @@ namespace The_Legend_of_Sparta
                     };
                     inventory.AddItem(newItem);
 
-                    Console.WriteLine("구매를 완료했습니다.");
+                    if(player.Name == "GigaChad")
+                    {
+                        Console.WriteLine("이제 진정한 장비를 얻었군.");
+                        Console.WriteLine("너의 잠재력을 끌어낼 좋은 선택이야.");
+                        Console.WriteLine("계속해서 강해져라. 스삣삐");
+                    }
+                    else
+                    {
+                        Console.WriteLine("구매를 완료했습니다.");
+                    }
+
+                    
                     Thread.Sleep(1000);
                 }
                 else
@@ -181,8 +235,20 @@ namespace The_Legend_of_Sparta
             }
             else
             {
-                Console.WriteLine("잘못된 입력입니다.");
-                Thread.Sleep(1000);
+                if (player.Name == "GigaChad")
+                {
+                    Console.Clear();
+                    Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
             }
         }
     }

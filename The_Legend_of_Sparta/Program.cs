@@ -148,10 +148,20 @@ namespace The_Legend_of_Sparta
                     }
                     break;
                 default:
-                    Console.Clear();
-                    Console.WriteLine("잘못된 입력입니다.");
-                    Thread.Sleep(1000);
-                    Console.Clear();
+                    if (player.Name == "GigaChad")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("잘못된 입력입니다.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                    }
                     break;
             }
         }
