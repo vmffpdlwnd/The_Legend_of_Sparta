@@ -9,8 +9,8 @@ namespace The_Legend_of_Sparta
 {
     public class Dungeon
     {
-        readonly int[] recommendedDefense = { 5, 11, 17 };  // 각 난이도별 권장 방어력
-        readonly int[] Rewards = { 1000, 1700, 2500 };  // 각 난이도별 기본 보상
+        readonly int[] recommendedDefense = { 5, 11, 17, 30 };  // 각 난이도별 권장 방어력
+        readonly int[] Rewards = { 500, 800, 1000, 3000};  // 각 난이도별 기본 보상
         Random random = new Random();
 
         public void DisplayDungeon(Character player)
@@ -29,6 +29,7 @@ namespace The_Legend_of_Sparta
                 Console.WriteLine($"1. 쉬운 던전   | 방어력 {recommendedDefense[0]} 이상 권장");
                 Console.WriteLine($"2. 일반 던전   | 방어력 {recommendedDefense[1]} 이상 권장");
                 Console.WriteLine($"3. 어려운 던전 | 방어력 {recommendedDefense[2]} 이상 권장");
+                Console.WriteLine($"4. 매우 어려운 던전 | 방어력 {recommendedDefense[3]} 이상 권장");
                 Console.WriteLine("0. 나가기");
 
                 Console.Write("\n원하는 행동을 입력해주세요.\n>>");
@@ -40,9 +41,9 @@ namespace The_Legend_of_Sparta
                     continue;
                 }
 
-                if (int.TryParse(input, out int index) && index > 0 && index <= 3)
+                if (int.TryParse(input, out int index) && index > 0 && index <= 4)
                 {
-                    if (player.Health <= 0)
+                    if (player.Health <= 1)
                     {
                         Console.WriteLine("체력이 부족하여 던전에 도전할 수 없습니다.");
                         Thread.Sleep(1000);
