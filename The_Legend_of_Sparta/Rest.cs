@@ -40,7 +40,7 @@ namespace The_Legend_of_Sparta
                             Player.Gold -= REST_PRISE;
                             Player.Health = 100;
                             Console.WriteLine("현명한 판단이야, 스삣삐.");
-                            Console.WriteLine("진정한 챔피언은 회복할 때도 완벽하게 하지.");
+                            Console.WriteLine("진정한 스파르타는 회복할 때도 완벽하게 하지.");
                             Thread.Sleep(1000);
                             Console.Clear();
                             isRest = true;

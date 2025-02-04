@@ -20,6 +20,7 @@ namespace The_Legend_of_Sparta
         public int PlusDefense { get; set; }
         public int Health { get; set; }
         public int Gold { get; set; }
+        public int DungeonClearCount { get; set; }
 
         public Character(string name)
         {
@@ -32,6 +33,7 @@ namespace The_Legend_of_Sparta
             PlusDefense = 0;
             Health = 100;
             Gold = 1500;
+            DungeonClearCount = 0;
         }
 
         public void SetInventory(Inventory inventory)
@@ -46,15 +48,17 @@ namespace The_Legend_of_Sparta
             while (isStatusView)
             {
                 Console.WriteLine("상태 보기");
-                Console.WriteLine("캐릭터의 정보가 표시됩니다.");
+                Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
+
                 Console.WriteLine($"Lv. {Level:D2}");
                 Console.WriteLine($"{Name} ( {Job} )");
                 Console.WriteLine($"공격력 : {Attack+PlusAttack} {(PlusAttack > 0 ? $" (+{PlusAttack})" : "")}");
                 Console.WriteLine($"방어력 : {Defense+PlusDefense} {(PlusDefense > 0 ? $" (+{PlusDefense})" : "")}");
                 Console.WriteLine($"체 력 : {Health}");
-                Console.WriteLine($"Gold : {Gold} G");
-                Console.WriteLine("");
+                Console.WriteLine($"Gold : {Gold} G\n");
+
                 Console.WriteLine("0. 나가기\n");
+
                 Console.Write("원하시는 행동을 입력해주세요.\n>>");
 
                 string input = Console.ReadLine();
@@ -97,6 +101,20 @@ namespace The_Legend_of_Sparta
                     PlusAttack += item.Power;
                 }
             }
+        }
+        public void LevelUP()
+        {
+            Level += 1;
+            if( Level % 2 == 0 )
+            {
+                Attack += 1;
+            }
+            Defense += 1;
+        }
+        public bool CheckLevelUp()
+        {
+            int requiredClears = Level;
+            return DungeonClearCount >= requiredClears;
         }
     }
 }

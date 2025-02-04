@@ -73,6 +73,24 @@ namespace The_Legend_of_Sparta
                     Type = ItemType.Spear,
                     Price = 3000,
                     IsPurchased = false
+                },
+                new Item
+                {
+                    Name = "대 마법사의 지팡이",
+                    Power = 14,
+                    Description = "그 어떤 용사도 들지 못하는 전설의 지팡이",
+                    Type = ItemType.Wand,
+                    Price = 6000,
+                    IsPurchased = false
+                },
+                new Item
+                {
+                    Name = "대현자의 마법 망토",
+                    Power = 30,
+                    Description = "대현자가 현생을 받쳐 만든 망토",
+                    Type = ItemType.Cloak,
+                    Price = 6000,
+                    IsPurchased = false
                 }
             };
         }
@@ -89,6 +107,7 @@ namespace The_Legend_of_Sparta
                     Console.Clear();
                     Console.WriteLine("스삣삐 상점에 찾아왔구나");
                     Console.WriteLine("넌 어떤 물건이든 싸게 살수있어! 유 캔 두 잇");
+
                 }
                 Console.WriteLine("\n[보유 골드]");
                 Console.WriteLine($"{player.Gold} G");
@@ -118,33 +137,44 @@ namespace The_Legend_of_Sparta
                 Console.Write("\n원하시는 행동을 입력해주세요.\n>>");
 
                 string input = Console.ReadLine();
-                switch (input)
+
+                if (input == "1")
                 {
-                    case "1":
-                        PurchaseItem();
-                        break;
-                    case "2":
-                        SellItem();
-                        break;
-                    case "0":
-                        isShopOpen = false;
-                        break;
-                    default:
-                        if (player.Name == "GigaChad")
-                        {
-                            Console.Clear();
-                            Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
-                            Thread.Sleep(1000);
-                            Console.Clear();
-                        }
-                        else
-                        {
-                            Console.Clear();
-                            Console.WriteLine("잘못된 입력입니다.");
-                            Thread.Sleep(1000);
-                            Console.Clear();
-                        }
-                        break;
+                    if (player.Name == "GigaChad")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("스삣삐 상점에 찾아왔구나");
+                        Console.WriteLine("넌 어떤 물건이든 싸게 살수있어! 유 캔 두 잇");
+
+                        Console.WriteLine("\n\n구매한다고? 난 여기서 기달릴게");
+                        Thread.Sleep(1500);
+                    }
+                    PurchaseItem();
+                }
+                else if (input == "2")
+                {
+                    SellItem();
+                }
+                else if (input == "0")
+                {
+                    isShopOpen = false;
+                }
+                else
+                {
+                    if (player.Name == "GigaChad")
+                    {
+                        Console.Clear();
+                        Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine("잘못된 입력입니다.");
+                        Thread.Sleep(1000);
+                        Console.Clear();
+                    }
                 }
             }
         }
@@ -152,13 +182,15 @@ namespace The_Legend_of_Sparta
         {
             Console.Clear();
             Console.WriteLine("상점 - 아이템 구매");
+            Console.WriteLine("필요한 아이템을 얻을 수 있는 상점입니다.");
             Console.WriteLine("\n[보유 골드]");
             Console.WriteLine($"{player.Gold} G");
             if (player.Name == "GigaChad")
             {
                 Console.Clear();
-                Console.WriteLine("상점 - 아이템 구매");
-                Console.WriteLine($"\n{player.Gold} G? 마음껏 골라봐!");
+                Console.WriteLine($"{player.Name}? 재미있는 이름이군.");
+                Console.WriteLine($"여길 더럽히지 말고 빨리 용건이나 말해.");
+                Console.WriteLine($"{player.Gold} G? 그래도 돈은 가져왔군.");
             }
             Console.WriteLine("\n[아이템 목록]");
 
@@ -215,22 +247,30 @@ namespace The_Legend_of_Sparta
 
                     if(player.Name == "GigaChad")
                     {
-                        Console.WriteLine("이제 진정한 장비를 얻었군.");
-                        Console.WriteLine("너의 잠재력을 끌어낼 좋은 선택이야.");
-                        Console.WriteLine("계속해서 강해져라. 스삣삐");
+                        Console.WriteLine("하. 저놈이 이걸 다루긴 할 줄 알려나?");
+                        Console.WriteLine("망가뜨리지만 말라고. 내 작품이니까.");
                     }
                     else
                     {
                         Console.WriteLine("구매를 완료했습니다.");
                     }
 
-                    
                     Thread.Sleep(1000);
                 }
                 else
                 {
-                    Console.WriteLine("Gold가 부족합니다.");
-                    Thread.Sleep(1000);
+                    if(player.Name == "GigaChad")
+                    {
+                        Console.WriteLine("푸하하! 주머니가 비었잖아");
+                        Console.WriteLine("여기가 어디라고 빈손으로 들어와? 어서 나가!");
+                        Thread.Sleep(1000);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Gold가 부족합니다.");
+                        Thread.Sleep(1000);
+                    }
+                    
                 }
             }
             else

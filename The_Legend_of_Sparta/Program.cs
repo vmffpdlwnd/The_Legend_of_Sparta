@@ -15,12 +15,14 @@ namespace The_Legend_of_Sparta
         static Inventory Inventory;
         static Shop Shop;
         static Rest Rest;
+        static Dungeon Dungeon;
 
         static void Main(string[] args)
         {
             bool isNameConfirmed = false;
             Chill_guy = new Chill_guy();
             Rest = new Rest();
+            Dungeon = new Dungeon();
 
             while (!isNameConfirmed)
             {
@@ -101,6 +103,7 @@ namespace The_Legend_of_Sparta
             Console.WriteLine("1. 상태 보기");
             Console.WriteLine("2. 인벤토리");
             Console.WriteLine("3. 상점");
+            Console.WriteLine("4. 던전입장");
             Console.WriteLine("5. 휴식하기");
             if (player.Name == "GigaChad")
             {
@@ -132,9 +135,7 @@ namespace The_Legend_of_Sparta
                 case "4":
                     //던전입장
                     Console.Clear();
-                    Console.WriteLine("던전입장은 준비중 입니다.");
-                    Console.Write("아무 버튼을 눌러주세요.\n>>");
-                    Console.ReadLine(); // 사용자 입력 대기
+                    Dungeon.DisplayDungeon(player);
                     break;
                 case "5":
                     //휴식하기

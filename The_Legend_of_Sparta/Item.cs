@@ -23,6 +23,8 @@ namespace The_Legend_of_Sparta
         Spear, // 창
         Sword, // 검
         Axe,   // 도끼
-        Armor  // 방어구
+        Wand,  // 지팡이
+        Armor, // 방어구
+        Cloak  // 망토
     }
 }

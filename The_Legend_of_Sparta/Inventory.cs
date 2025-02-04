@@ -48,7 +48,7 @@ namespace The_Legend_of_Sparta
             {
                 string equipped = items[i].IsEquipped ? "[E]" : "";
                 string powerText = items[i].Type == ItemType.Armor ? "방어력" : "공격력";
-                Console.WriteLine($"- {i + 1} {equipped}{items[i].Name} | {GetStatText(items[i])} | {items[i].Description}");
+                Console.WriteLine($"- {equipped}{items[i].Name} | {GetStatText(items[i])} | {items[i].Description}");
             }
             Console.WriteLine("\n1. 장착 관리");
             Console.WriteLine("0. 나가기\n");
@@ -56,30 +56,33 @@ namespace The_Legend_of_Sparta
             Console.Write("원하시는 행동을 입력해주세요.\n>>");
 
             string input = Console.ReadLine();
-            switch (input)
+            if ( input == "1")
             {
-                case "1":
-                    DisplayEquipMenu();
-                    break;
-                case "0":
-                    return;
-                default:
-                    if (Char.Name == "GigaChad")
-                    {
-                        Console.Clear();
-                        Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
-                        Thread.Sleep(1000);
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.WriteLine("잘못된 입력입니다.");
-                        Thread.Sleep(1000);
-                        Console.Clear();
-                    }
-                    break;
+
+                DisplayEquipMenu();
             }
+            else if ( input == "0")
+            {
+                Console.Clear();
+            }
+            else
+            {
+                if (Char.Name == "GigaChad")
+                {
+                    Console.Clear();
+                    Console.WriteLine("잘못 눌렀잖아 스삣삐!!!");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("잘못된 입력입니다.");
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                }
+            }
+
         }
         public void DisplayEquipMenu()
         {
@@ -128,7 +131,14 @@ namespace The_Legend_of_Sparta
         }
         private string GetStatText(Item item)
         {
-            return item.Type == ItemType.Armor ? $"방어력 +{item.Power}" : $"공격력 +{item.Power}";
+            if (item.Type == ItemType.Armor || item.Type == ItemType.Cloak)
+            {
+                return $"방어력 +{item.Power}";
+            }
+            else
+            {
+                return $"공격력 +{item.Power}";
+            }
         }
         private void EquipItem(int index)
         {
@@ -143,12 +153,19 @@ namespace The_Legend_of_Sparta
             }
             else
             {
+                if (selectedItem.Type == ItemType.Wand || selectedItem.Type == ItemType.Cloak)
+                {
+                    Console.WriteLine("이 아이템은 장착할 수 없습니다.");
+                    Thread.Sleep(1000);
+                    return;
+                }
+
                 if (selectedItem.Type == ItemType.Armor)
                 {
                     // 갑옷의 경우 다른 갑옷 해제
                     foreach (var item in items)
                     {
-                        if (item.Type == ItemType.Armor && item != selectedItem)
+                        if ((item.Type == ItemType.Armor || item.Type == ItemType.Cloak) && item != selectedItem)
                         {
                             item.IsEquipped = false;
                         }
@@ -160,7 +177,7 @@ namespace The_Legend_of_Sparta
                     // 무기(창/검)의 경우 다른 무기 해제
                     foreach (var item in items)
                     {
-                        if ((item.Type == ItemType.Sword || item.Type == ItemType.Spear) && item != selectedItem)
+                        if ((item.Type == ItemType.Sword || item.Type == ItemType.Spear || item.Type == ItemType.Axe || item.Type == ItemType.Wand) && item != selectedItem)
                         {
                             item.IsEquipped = false;
                         }
