@@ -9,8 +9,8 @@ namespace The_Legend_of_Sparta
 {
     public class Dungeon
     {
-        readonly int[] recommendedDefense = { 5, 11, 17, 30 };  // 각 난이도별 권장 방어력
-        readonly int[] Rewards = { 500, 800, 1000, 3000};  // 각 난이도별 기본 보상
+        readonly int[] recommendedDefense = { 5, 20, 30, 60 };  // 각 난이도별 권장 방어력
+        readonly int[] Rewards = { 300, 600, 1000, 3000};  // 각 난이도별 기본 보상
         Random random = new Random();
 
         public void DisplayDungeon(Character player)

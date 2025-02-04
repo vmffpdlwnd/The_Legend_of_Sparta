@@ -146,7 +146,7 @@ namespace The_Legend_of_Sparta
                         Console.WriteLine("스삣삐 상점에 찾아왔구나");
                         Console.WriteLine("넌 어떤 물건이든 싸게 살수있어! 유 캔 두 잇");
 
-                        Console.WriteLine("\n\n구매한다고? 난 여기서 기달릴게");
+                        Console.WriteLine("\n\n구매한다고? 난 여기서 기다릴게");
                         Thread.Sleep(1500);
                     }
                     PurchaseItem();
