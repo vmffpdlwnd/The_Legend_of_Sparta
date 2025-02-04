@@ -335,7 +335,7 @@ namespace The_Legend_of_Sparta
                     Price = $"{actualPrice} G";
                 }
 
-                string stat = item.Type == ItemType.Armor ? $"방어력 + {item.Power}" : $"공격력 + {item.Power}";
+                string stat = (shopItems[i].Type == ItemType.Armor || shopItems[i].Type == ItemType.Cloak) ? $"방어력 +{shopItems[i].Power}" : $"공격력 +{shopItems[i].Power}";
 
                 string equippedMark = item.IsEquipped ? "[E] " : "";
 

@@ -92,7 +92,7 @@ namespace The_Legend_of_Sparta
 
             foreach (var item in Inventory.GetEquippedItems())
             {
-                if (item.Type == ItemType.Armor)
+                if (item.Type == ItemType.Armor || item.Type == ItemType.Cloak)
                 {
                     PlusDefense += item.Power;
                 }
