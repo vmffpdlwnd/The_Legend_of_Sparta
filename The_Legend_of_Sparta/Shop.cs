@@ -76,7 +76,7 @@ namespace The_Legend_of_Sparta
                 },
                 new Item
                 {
-                    Name = "대 마법사의 지팡이",
+                    Name = "대마법사의 지팡이",
                     Power = 14,
                     Description = "그 어떤 용사도 들지 못하는 전설의 지팡이",
                     Type = ItemType.Wand,
@@ -126,7 +126,7 @@ namespace The_Legend_of_Sparta
                         price = $"{actualPrice} G";
                     }
 
-                    string stat = shopItems[i].Type == ItemType.Armor ? $"방어력 +{shopItems[i].Power}" : $"공격력 +{shopItems[i].Power}";
+                    string stat = (shopItems[i].Type == ItemType.Armor || shopItems[i].Type == ItemType.Cloak) ? $"방어력 +{shopItems[i].Power}" : $"공격력 +{shopItems[i].Power}";
 
                     Console.WriteLine($"- {i + 1} {shopItems[i].Name,-8} | {stat,-6} | {shopItems[i].Description,-30} | {price}");
                 }
@@ -208,7 +208,7 @@ namespace The_Legend_of_Sparta
                     price = $"{actualPrice} G";
                 }
 
-                string stat = shopItems[i].Type == ItemType.Armor ? $"방어력 +{shopItems[i].Power}" : $"공격력 +{shopItems[i].Power}";
+                string stat = (shopItems[i].Type == ItemType.Armor || shopItems[i].Type == ItemType.Cloak) ? $"방어력 +{shopItems[i].Power}" : $"공격력 +{shopItems[i].Power}";
 
                 Console.WriteLine($"- {i + 1} {shopItems[i].Name,-8} | {stat,-6} | {shopItems[i].Description,-30} | {price}");
             }
