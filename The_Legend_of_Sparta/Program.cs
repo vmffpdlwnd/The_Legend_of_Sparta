@@ -100,6 +100,7 @@ namespace The_Legend_of_Sparta
             Console.WriteLine("3. 상점");
             if (player.Name == "GigaChad")
             {
+                Console.WriteLine("6. ???");
                 Console.WriteLine("7. Chill guy  <= 당장 이걸 선택해! 스삣삐");
             }
 
@@ -140,10 +141,7 @@ namespace The_Legend_of_Sparta
                     break;
                 case "6" when player.Name == "GigaChad":
                     //???
-                    Console.Clear();
-                    Console.WriteLine("???는 준비중 입니다.");
-                    Console.Write("아무 버튼을 눌러주세요.\n>>");
-                    Console.ReadLine(); // 사용자 입력 대기
+                    Chill_guy.Show_me_the_money();
                     break;
                 case "7" when player.Name == "GigaChad":
                     //Chill guy

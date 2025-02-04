@@ -177,9 +177,9 @@ namespace The_Legend_of_Sparta
         {
             if(index >= 0 && index < items.Count)
             {
-                var item = items[index];
+                items.RemoveAt(index);
             }
         }
-        }
     }
+}
 

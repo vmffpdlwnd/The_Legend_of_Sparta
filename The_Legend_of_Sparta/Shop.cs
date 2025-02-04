@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -281,22 +282,24 @@ namespace The_Legend_of_Sparta
             Console.WriteLine("[아이템 목록]");
             for (int i = 0; i < inventoryItems.Count; i++)
             {
+                
                 var item = inventoryItems[i];
-
-                int sellPrice = (int)(item.Price * 0.85);
+                string Price;
+                if (item.Name == "나무 막대기")
+                {
+                    Price = "판매 불가";
+                }
+                else
+                {
+                    int actualPrice = (int)(shopItems[i].Price * 0.85);
+                    Price = $"{actualPrice} G";
+                }
 
                 string stat = item.Type == ItemType.Armor ? $"방어력 + {item.Power}" : $"공격력 + {item.Power}";
 
                 string equippedMark = item.IsEquipped ? "[E] " : "";
-                if (item.IsBasicItem)
-                {
-                    Console.WriteLine($"- {i + 1} {equippedMark}{item.Name,-8} | {stat,-6} | {item.Description,-30} | 판매 불가");
-                }
-                else
-                {
-                    Console.WriteLine($"- {i + 1} {equippedMark}{item.Name,-8} | {stat,-6} | {item.Description,-30} | {sellPrice} G");
-                }
-                
+
+                Console.WriteLine($"- {i + 1} {equippedMark}{item.Name,-8} | {stat,-6} | {item.Description,-30} | {Price}");            
             }
 
             Console.WriteLine("\n0. 나가기");
@@ -309,6 +312,7 @@ namespace The_Legend_of_Sparta
             {
                 var item = inventoryItems[index - 1];
 
+               
                 if (item.IsBasicItem)
                 {
                     Console.WriteLine("해당 아이템은 판매할 수 없습니다.");
@@ -327,7 +331,13 @@ namespace The_Legend_of_Sparta
                 player.Gold += sellPrice;
                 inventory.RemoveItem(index - 1);
 
-                if(player.Name == "GigaChad")
+                var shopItem = shopItems.Find(x => x.Name == item.Name);
+                if (shopItem != null)
+                {
+                    shopItem.IsPurchased = false;
+                }
+
+                if (player.Name == "GigaChad")
                 {
                     Console.WriteLine("완벽해, 스삣삐. 약한 장비는 과감히 놓아주는 것.");
                     Console.WriteLine("이제 더 강한 장비를 향해 나아가자고.");
